@@ -1,8 +1,5 @@
 from project.config import DevelopmentConfig
-from project.dao.models import Genre
-from project.dao.models.director import Director
-from project.dao.models.movie import Movie
-from project.dao.models.user import User
+from project.dao.models import *
 from project.server import create_app
 from project.setup_db import db
 
