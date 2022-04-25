@@ -9,9 +9,9 @@ app = create_app(DevelopmentConfig)
 def shell():
     return {
         "db": db,
+        "Director": Director,
         "Genre": Genre,
         "Movie": Movie,
-        "Director": Director,
         "User": User
     }
 

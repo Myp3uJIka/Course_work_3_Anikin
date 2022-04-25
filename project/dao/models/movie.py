@@ -6,10 +6,10 @@ class Movie(BaseMixin, db.Model):
     __tablename__ = 'movies'
 
     title = db.Column(db.String(100), unique=True, nullable=False)
-    description = db.Column(db.String(255))
-    trailer = db.Column(db.String(255))
-    year = db.Column(db.Integer)
-    rating = db.Column(db.Float)
+    description = db.Column(db.String(255),  nullable=False)
+    trailer = db.Column(db.String(255), nullable=False)
+    year = db.Column(db.Integer,  nullable=False)
+    rating = db.Column(db.Float,  nullable=False)
     genre_id = db.Column(db.Integer, db.ForeignKey("genres.id"))
     genres = db.relationship("Genre")
     director_id = db.Column(db.Integer, db.ForeignKey("directors.id"))
