@@ -15,7 +15,7 @@ class DirectorsView(Resource):
         return DirectorsService(db.session).get_all_directors()
 
 
-@directors_ns.route("/<int:did>")
+@directors_ns.route("/<int:did>/")
 class DirectorView(Resource):
     @directors_ns.response(200, "OK")
     @directors_ns.response(404, "Director not found")
