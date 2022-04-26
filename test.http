@@ -1,0 +1,32 @@
+PUT http://localhost:5000/auth/login/
+Content-Type: application/json
+
+{
+  "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjpudWxsLCJmYXZvcml0ZV9nZW5yZSI6bnVsbCwiaWQiOjEsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJxd2UiLCJzdXJuYW1lIjpudWxsLCJleHAiOjE2NjIyMTg3Njl9.lVE685PXd2hnKP8oamfhpFLXgmE2uVe-AzXZk96qgMY"
+}
+
+###
+
+POST http://localhost:5000/auth/login/
+Content-Type: application/json
+
+{
+  "email": "qwe",
+  "password": "qwe"
+}
+
+###
+
+PUT http://localhost:5000/auth/login/
+Content-Type: application/json
+
+{
+  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InF3ZSIsImZhdm9yaXRlX2dlbnJlIjpudWxsLCJuYW1lIjpudWxsLCJpZCI6MSwic3VybmFtZSI6bnVsbCwicm9sZSI6InVzZXIiLCJleHAiOjE2NTA5ODk4MjZ9.-OA03wu-r1b8BVdxtbO5G1Toz5iKN1HCPQztGR5EBF0"
+}
+
+###
+
+PUT http://localhost:5000/auth/login/
+Content-Type: application/json
+
+###
