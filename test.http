@@ -30,3 +30,19 @@ PUT http://localhost:5000/auth/login/
 Content-Type: application/json
 
 ###
+
+GET http://localhost:5000/user/1/
+Content-Type: application/json
+
+###
+
+GET http://localhost:5000/user/
+Content-Type: application/json
+
+###
+
+PATCH http://localhost:5000/user/
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmYXZvcml0ZV9nZW5yZSI6bnVsbCwic3VybmFtZSI6bnVsbCwibmFtZSI6bnVsbCwiaWQiOjEsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJxd2UiLCJleHAiOjE2NjIyNDQ1NTN9.5LDc3DCs1T6aKGZ8V4bYZ3D-9-TPazIe-zTYANFkU6w
+
+###
