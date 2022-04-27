@@ -3,7 +3,7 @@ import datetime
 import calendar
 
 import jwt
-from flask import current_app
+from flask import current_app, request
 from flask_restx import abort
 
 from project.schemas.user import UserSchema
@@ -57,4 +57,39 @@ def create_tokens_from_rtoken(data):
             abort(401)
     abort(401)
 
+
+def auth_required(func):
+    def wrapper(*args, **kwargs):
+        if 'Authorization' not in request.headers:
+            abort(401)
+        data = request.headers['Authorization']
+        token = data.split("Bearer ")[-1]
+        try:
+            jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=ALGO)
+        except Exception as e:
+            print('JWT Decode Exception', e)
+            abort(401)
+        return func(*args, **kwargs)
+    return wrapper
+
+
+def get_user_from_token(req):
+    if "Authorization" not in req:
+        abort(401)
+    data = req['Authorization']
+    token = data.split("Bearer ")[-1]
+    try:
+        user_data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=ALGO)
+        return user_data
+    except Exception as e:
+        print('JWT Decode Exception', e)
+        abort(401)
+
+
+def compare_password(data):
+    hashed_old_password = generate_password_digest(data['old_password'])
+    if data['current_password'] == hashed_old_password:
+        return True
+    else:
+        return False
 
