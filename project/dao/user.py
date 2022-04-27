@@ -7,8 +7,8 @@ class UserDAO:
     def __init__(self, session: scoped_session):
         self._db_session = session
 
-    def get_one(self, uid):
-        return self._db_session.query(User).get(uid)
+    def get_one(self, u_id):
+        return self._db_session.query(User).get(u_id)
 
     def get_by_email_password(self, user):
         return self._db_session.query(User).filter(
@@ -29,13 +29,9 @@ class UserDAO:
         self._db_session.delete(user)
         self.commit()
 
-    def update(self, user_update):
-        user = self._db_session.query(User).filter(User.email == user_update['email']).one()
-        user.id = user_update['id']
-        user.email = user_update['email']
-        user.name = user_update['name']
-        user.surname = user_update['surname']
-        user.favorite_genre = user_update['favorite_genre']
-        user.role = user_update['role']
-
+    def update(self, user):
+        self._db_session.add(user)
         self._db_session.commit()
+
+    # def get_limit(self, limit, offset):
+    #     return self._db_session.query(User).limit(limit).offset(offset).all()
