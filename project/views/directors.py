@@ -12,7 +12,7 @@ class DirectorsView(Resource):
     @directors_ns.response(200, "OK")
     def get(self):
         """Get all directors"""
-        return DirectorsService(db.session).get_all_directors()
+        return DirectorsService(db.session).get_all_directors(), 200
 
 
 @directors_ns.route("/<int:did>/")
@@ -22,6 +22,6 @@ class DirectorView(Resource):
     def get(self, did):
         """Get director by id"""
         try:
-            return DirectorsService(db.session).get_item_by_id(did)
+            return DirectorsService(db.session).get_item_by_id(did), 200
         except ItemNotFound:
             abort(404, message="Director not found")

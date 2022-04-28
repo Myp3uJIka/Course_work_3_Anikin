@@ -15,8 +15,8 @@ class MoviesView(Resource):
         """Get all movies"""
         filter_param = request.args
         if filter_param:
-            return MoviesService(db.session).get_filtered_movies(filter_param)
-        return MoviesService(db.session).get_all_movies()
+            return MoviesService(db.session).get_filtered_movies(filter_param), 200
+        return MoviesService(db.session).get_all_movies(), 200
 
 
 @movies_ns.route("/<int:movie_id>/")
@@ -26,6 +26,6 @@ class MovieView(Resource):
     def get(self, movie_id: int):
         """Get movie by id"""
         try:
-            return MoviesService(db.session).get_item_by_id(movie_id)
+            return MoviesService(db.session).get_item_by_id(movie_id), 200
         except ItemNotFound:
             abort(404, message="Movie not found")
