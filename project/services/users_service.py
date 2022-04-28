@@ -1,6 +1,5 @@
-from flask import current_app
-
 from project.dao import UserDAO
+from project.exceptions import ItemNotFound
 from project.schemas.user import UserSchema
 from project.services.base import BaseService
 from project.tools.security import generate_password_digest
@@ -13,6 +12,8 @@ class UsersService(BaseService):
 
     def get_one(self, u_id):
         user = UserDAO(self._db_session).get_one(u_id)
+        if not user:
+            raise ItemNotFound
         return UserSchema().dump(user)
 
     def get_by_email_password(self, data):
@@ -43,12 +44,3 @@ class UsersService(BaseService):
     def get_user_password(self, u_id):
         user = UserDAO(self._db_session).get_one(u_id)
         return user.password
-
-    # def get_limit_users(self, page):
-    #     limit = current_app.config['ITEMS_PER_PAGE']
-    #     offset = (page - 1) * limit
-    #     users = UserDAO(self._db_session).get_limit(limit=limit, offset=offset)
-    #     return UserSchema(many=True).dump(users)
-
-    # def get_all_users(self):
-    #     users = UserDAO(self._db_session).get_all()

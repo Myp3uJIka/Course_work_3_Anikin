@@ -32,6 +32,3 @@ class UserDAO:
     def update(self, user):
         self._db_session.add(user)
         self._db_session.commit()
-
-    # def get_limit(self, limit, offset):
-    #     return self._db_session.query(User).limit(limit).offset(offset).all()

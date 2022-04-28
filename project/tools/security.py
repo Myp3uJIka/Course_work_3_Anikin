@@ -45,7 +45,7 @@ def create_tokens(user):
     }
 
 
-def create_tokens_from_rtoken(data):
+def create_tokens_from_token(data):
     try:
         user_data = jwt.decode(data['access_token'], current_app.config['SECRET_KEY'], algorithms=ALGO)
         return create_tokens(user_data)
@@ -55,7 +55,6 @@ def create_tokens_from_rtoken(data):
             return create_tokens(user_data)
         except Exception:
             abort(401)
-    abort(401)
 
 
 def auth_required(func):
