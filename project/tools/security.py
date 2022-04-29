@@ -92,3 +92,12 @@ def compare_password(data):
     else:
         return False
 
+
+def check_correct_fill(data):
+    """Easy check"""
+    email = data['email']
+    password = data['password']
+    if '@' in email and len(email) > 8:
+        if len(password) > 8:
+            return True
+    return False
