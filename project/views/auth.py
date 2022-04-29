@@ -3,7 +3,7 @@ from flask_restx import Namespace, Resource, abort
 
 from project.services.users_service import UsersService
 from project.setup_db import db
-from project.tools.security import create_tokens, create_tokens_from_token
+from project.tools.security import create_tokens, create_tokens_from_token, check_correct_fill
 
 auth_ns = Namespace('auth')
 
@@ -13,11 +13,13 @@ class RegisterView(Resource):
     @auth_ns.response(200, "OK")
     def post(self):
         """Create user"""
+        if not check_correct_fill(request.json):
+            abort(400, message="Email, или пароль, не может содержать менее 8 символов")
         try:
             UsersService(db.session).create(request.json)
             return '', 201
         except Exception:
-            return {"error": 'Данный логин уже используется.'}, 400
+            abort(400, message="Данный логин уже используется")
 
 
 @auth_ns.route("/login/")
