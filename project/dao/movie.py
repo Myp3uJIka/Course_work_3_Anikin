@@ -14,7 +14,7 @@ class MovieDAO:
     def get_all(self):
         return self._db_session.query(Movie).all()
 
-    def get_filtered_movies(self, limit, offset, status):
+    def get_filtered_movies(self, limit=0, offset=0, status=None):
         if limit > 0 and status == "new":
             return self._db_session.query(Movie).order_by(desc(Movie.year)).limit(limit).offset(offset).all()
         elif limit > 0:
