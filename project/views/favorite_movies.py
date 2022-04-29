@@ -38,7 +38,8 @@ class FavoriteView(Resource):
         user_id = 1
         # user_id = get_user_from_token(request.header)['id']
         try:
-            return FavoriteMovieService(db.session).create(m_id, user_id)
+            FavoriteMovieService(db.session).create(m_id, user_id)
+            return '', 204
         except Exception:
             abort(404, message="The movie cannot be added to favorites")
 
@@ -46,6 +47,7 @@ class FavoriteView(Resource):
         user_id = 1
         # user_id = get_user_from_token(request.header)['id']
         try:
-            return FavoriteMovieService(db.session).delete(m_id, user_id)
+            FavoriteMovieService(db.session).delete(m_id, user_id)
+            return '', 204
         except Exception:
             abort(404, message="The movie cannot be deleted")
