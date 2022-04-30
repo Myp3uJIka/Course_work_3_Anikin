@@ -27,7 +27,7 @@ class UserDAO:
     def delete(self, uid):
         user = self.get_one(uid)
         self._db_session.delete(user)
-        self.commit()
+        self._db_session.commit()
 
     def update(self, user):
         self._db_session.add(user)
