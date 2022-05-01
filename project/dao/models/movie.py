@@ -13,7 +13,7 @@ class Movie(BaseMixin, db.Model):
     genre_id = db.Column(db.Integer, db.ForeignKey("genres.id"))
     genres = db.relationship("Genre")
     director_id = db.Column(db.Integer, db.ForeignKey("directors.id"))
-    genres = db.relationship("Director")
+    directors = db.relationship("Director")
 
     def __repr__(self):
         return f"<Movie '{self.title.title()}'>"

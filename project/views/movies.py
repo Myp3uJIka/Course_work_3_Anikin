@@ -21,8 +21,8 @@ class MoviesView(Resource):
 
 @movies_ns.route("/<int:movie_id>/")
 class MovieView(Resource):
-    @movies_ns.response(200, "OK")
-    @movies_ns.response(404, "Movie not found")
+    # @movies_ns.response(200, "OK")
+    # @movies_ns.response(404, "Movie not found")
     def get(self, movie_id: int):
         """Get movie by id"""
         try:
