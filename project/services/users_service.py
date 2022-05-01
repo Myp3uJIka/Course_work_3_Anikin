@@ -23,7 +23,7 @@ class UsersService(BaseService):
     def create(self, data):
         data['role'] = 'user'
         data['password'] = generate_password_digest(data['password'])
-        return UserDAO(self._db_session).create(data)
+        UserDAO(self._db_session).create(data)
 
     def update(self, data):
         user = UserDAO(self._db_session).get_one(data['id'])
